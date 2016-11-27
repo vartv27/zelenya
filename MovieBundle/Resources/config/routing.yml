@@ -1,0 +1,11 @@
+movie_app_tag:
+    resource: "@MovieBundle/Resources/config/routing/tag.yml"
+    prefix:   /app_tag
+
+movie_app_movie:
+    resource: "@MovieBundle/Resources/config/routing/movie.yml"
+    prefix:   /app_movie
+    
+movie_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MovieBundle:Default:index }

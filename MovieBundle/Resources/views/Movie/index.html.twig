@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Movie list</h1>
+
+    <table class="records_list"  border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Tags</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tar_tag in tag %}
+            <tr><td> {{ tar_tag.title }}</td></tr>
+            {% for entity in entities %}
+                {% if tar_tag in entity.tags %}
+                <tr>
+                    <td><a href="{{ path('app_movie_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.title }}</td>
+                    <td>{% if entity.year %}{{ entity.year|date('Y') }}{% endif %}</td>
+                    <td> {% for tag in entity.tags %}
+                             {{ tag.title }},
+                         {% endfor %}
+                    </td>
+                    <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('app_movie_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_movie_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_movie_delete_force', { 'id': entity.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                    </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('app_movie_new') }}">
+                Добавить новый
+            </a>
+            <a href="{{ path('app_tag') }}">
+                Список тегов
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

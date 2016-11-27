@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Movie edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <form action="{{ path('app_movie_updatetag', { 'id': entity.id }) }}"  >
+            <input type="text" name="title" value="new tag">
+            <input type="submit" value="Добавить новый тег">
+        </form>
+    </li>
+    <li>
+        <br>
+        <a href="{{ path('app_movie') }}">
+            Назад к списку
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

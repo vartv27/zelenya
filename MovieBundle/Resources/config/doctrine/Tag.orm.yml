@@ -1,0 +1,17 @@
+MovieBundle\Entity\Tag:
+    type: entity
+    repositoryClass: MovieBundle\Repository\TagsRepository
+    table: tag
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        title:
+            type: string
+            length: 255
+            unique: true
+    manyToMany:
+        movies:
+            targetEntity: Movie
+            mappedBy: tags

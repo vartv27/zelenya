@@ -1,0 +1,37 @@
+app_movie:
+    path:     /
+    defaults: { _controller: "MovieBundle:Movie:index" }
+
+app_movie_show:
+    path:     /{id}/show
+    defaults: { _controller: "MovieBundle:Movie:show" }
+
+app_movie_new:
+    path:     /new
+    defaults: { _controller: "MovieBundle:Movie:new" }
+
+app_movie_create:
+    path:     /create
+    defaults: { _controller: "MovieBundle:Movie:create" }
+    methods:  POST
+
+app_movie_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MovieBundle:Movie:edit" }
+
+app_movie_update:
+    path:     /{id}/update
+    defaults: { _controller: "MovieBundle:Movie:update" }
+    methods:  [POST, PUT]
+
+app_movie_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MovieBundle:Movie:delete" }
+
+app_movie_delete_force:
+    path:     /{id}/delete_force
+    defaults: { _controller: "MovieBundle:Movie:deleteForce" }
+
+app_movie_updatetag:
+    path:     /{id}/updatetag
+    defaults: { _controller: "MovieBundle:Movie:updateTag" }
