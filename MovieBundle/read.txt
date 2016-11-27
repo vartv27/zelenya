@@ -1,0 +1,5 @@
+php app/console doctrine:generate:crud --entity=MovieBundle:Movie --route-prefix=app_movie --with-write --format=yml
+php app/console doctrine:generate:crud --entity=MovieBundle:Tag --route-prefix=app_tag --with-write --format=yml
+php app/console doctrine:generate:entities MovieBundle
+php app/console generate:bundle --namespace=MovieBundle
+composer create-project symfony/framework-standard-edition movie "2.5.*"
