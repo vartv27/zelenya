@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>browse file</title>
+    <meta charset="utf-8">
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            background: #ffffff;
+        }
+        table {
+            width: 100%;
+            border-spacing: 15px;
+        }
+        td {
+            text-align: center;
+            padding: 5px;
+            background: #fbfff6;
+        }
+        img {
+            border: 5px solid #303030;
+            padding: 0;
+            verticle-align: middle;
+        }
+        img:hover {
+            border-color: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<table>
+    {% for image in images %}
+        {% if (loop.index % 4) == 1 %}<tr>{% endif %}
+        <td><img class= "img1" src="{{ image.src }}" width="150px" height="150px">
+            {#   <a href="{{ path('filestorage_remove', {'id': image.id}) }}">Удалить</a> #}
+        </td>
+        {% if (loop.index % 4) == 0 or ((images|length < 4) and (loop.index == images|length)) %}
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+
+<script type="text/javascript">
+    $( ".img1" ).click(function() {
+        $("#ad_form_banner_url").val($(this).attr("src"));
+        $( "#dialogd" ).dialog('close');
+    });
+</script>
+
+</body>
+</html>
+
+
+
+<div id="dialogd" title="Image dialog" style="display: none" >
+    <div class="resultsa">Ждем ...</div>
+</div>
+
+<div id="targetimg">
+    <button id="targetbtn">Выбрать</button>
+</div>
+{#<input id="in1" type="text" size="40" value ="url">#}
+
+<script type="text/javascript">
+    $( "#targetbtn" ).click(function() {
+        $( "#dialogd" ).dialog();
+//        $(".dialogd").show();
+        $.ajax({
+            url: "{{ path('wifiportal_ads_image') }}" ,
+            success: function(data) {
+                $(".resultsa").html(data);
+            }
+        });
+    });
+</script>
